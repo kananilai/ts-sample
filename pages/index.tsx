@@ -1,7 +1,7 @@
-/* eslint-disable react/react-in-jsx-scope */
 import "tailwindcss/tailwind.css";
 import type { NextPage } from "next";
 import { TwitterCard } from "../components/TwitterCard";
+import React from "react";
 
 const Home: NextPage = () => {
   return (
