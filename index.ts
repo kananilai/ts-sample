@@ -1,15 +1,13 @@
-export const Obj = {
-  foo: "foo",
-  111: "bar",
-};
+//リテラルタイプスで推論されている
+export const color = "red";
 
-// type Obj = typeof Obj;
-// type Key = keyof Obj;
-//上をまとめると↓
-// type Key = keyof typeof Obj;
+// string Literal Typesにダウンキャスト
+// redしか受け取らない
+// 自分が指定した値であることを保証する
 
-function test(x:keyof typeof Obj){
-  return;
-}
-//この場合、"foo"と"bar"のどちらかを引数に渡すことができる
-test("foo");
+const theme = {
+  // color: "red" as "red",
+  // const assertion⏬
+  color: "red",
+  backgroundColor: "blue",
+} as const;
