@@ -1,24 +1,12 @@
-type UserA = { name: string; lang: "ja" };
-type UserB = { name: string; lang: "en" };
-type UserC = { name: string; lang: "fr" };
+//<T = string>で初期値設定
+//extendsはGenericsとはいえある程度制限したい時に使う
+export type Foo<T extends string | number = string> = {
+  value: T;
+};
 
-export const foo = (value: UserA | UserB | UserC) => {
-  switch (value.lang) {
-    case "ja": {
-      return value;
-    }
-    case "en": {
-      return value;
-    }
-    case "fr": {
-      return value;
-    }
-    default: {
-      throw new Error("lang is not defined!");
-    }
-  }
-  // if (value.lang === "ja") {
-  //   return value;
-  // }
-  // return value;
+const foo1: Foo = {
+  value: "",
+};
+const foo2: Foo<number> = {
+  value: 222,
 };
