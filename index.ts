@@ -1,18 +1,12 @@
-//keyofでオブジェクトのプロパティ名を取得
-const getProperty = <T, K extends keyof T>(obj: T, key: K) => {
-  return obj[key];
+type Props = {
+  id: string;
+  name: string;
+  age: number;
 };
 
-const setProperty = <T, K extends keyof T,>(obj: T, key: K, value:T[K]) => {
-  obj[key] = value;
-};
+type Filter<T, U> = {
+  [K in keyof T]: T[K] extends U ? K : never;
+}[keyof T];
 
-const obj = {
-  foo:1,
-  bar:2,
-  baz:3
-};
-
-const hoge = getProperty(obj,"baz");
-
-setProperty(obj,"bar",100);
+type StringKeys = Filter<Props, string>;
+type NumberKeys = Filter<Props, number>;
