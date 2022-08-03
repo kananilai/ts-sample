@@ -1,10 +1,18 @@
-//Genericsは引数の前に記述
-const foo = <T extends string>(arg: T) => {
-  //extendsで型を指定することで、メソッドが使える様になる。extendsで型制限をしないとunknown型になる。
-  //ユニオンタイプスの場合は、メソッドにアクセスできない⇨if文で型を絞る必要がある。(typeofなど)
-  return { value: arg };
+//keyofでオブジェクトのプロパティ名を取得
+const getProperty = <T, K extends keyof T>(obj: T, key: K) => {
+  return obj[key];
 };
 
-// const foo1 = foo("");
-// const foo2 = foo(1);
-// const foo3 = foo([true]);
+const setProperty = <T, K extends keyof T,>(obj: T, key: K, value:T[K]) => {
+  obj[key] = value;
+};
+
+const obj = {
+  foo:1,
+  bar:2,
+  baz:3
+};
+
+const hoge = getProperty(obj,"baz");
+
+setProperty(obj,"bar",100);
